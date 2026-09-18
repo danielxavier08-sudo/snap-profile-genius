@@ -16,13 +16,13 @@ import {
 export const Route = createFileRoute("/_authenticated/historico")({
   head: () => ({
     meta: [
-      { title: "Meu histórico — Recomendador Herbamed" },
+      { title: "Meu histórico — Recomendador Sempre Bem" },
       {
         name: "description",
         content:
           "Perfil salvo, cadência de medição e comparação entre as suas bioimpedâncias ao longo do tempo.",
       },
-      { property: "og:title", content: "Meu histórico — Recomendador Herbamed" },
+      { property: "og:title", content: "Meu histórico — Recomendador Sempre Bem" },
       {
         property: "og:description",
         content: "Acompanhe a evolução das suas medições de bioimpedância semana a semana ou mês a mês.",
@@ -111,12 +111,12 @@ function Historico() {
     <div className="min-h-screen bg-background font-sans text-foreground">
       <Cabecalho direita={`${lista.length} medições`} />
 
-      <main className="mx-auto max-w-[430px] px-4 pb-16">
+      <main className="mx-auto max-w-[720px] bg-surface px-4 pb-16 sm:my-6 sm:rounded-xl sm:border sm:border-border sm:px-8 sm:shadow-sm">
         <section className="animate-rise pb-5 pt-7">
-          <div className="mb-3 font-mono text-[10px] uppercase tracking-[0.18em] text-accent">
-            (a) Meu perfil
+          <div className="mb-3 text-[10px] font-bold uppercase tracking-[0.12em] text-primary">
+            Perfil do cliente
           </div>
-          <h1 className="text-balance font-display text-[42px] leading-[0.92] tracking-tight">
+          <h1 className="text-balance font-display text-[34px] leading-tight text-primary">
             Histórico de
             <br />
             medições
@@ -129,7 +129,7 @@ function Historico() {
           </p>
         </section>
 
-        <section className="rounded-2xl border border-border bg-surface p-4">
+        <section className="rounded-xl border border-border bg-secondary/35 p-4">
           <label className="block">
             <span className="mb-1.5 block text-[11px] font-medium">Nome</span>
             <input
@@ -184,8 +184,8 @@ function Historico() {
 
         {ultima && anterior ? (
           <section className="mt-8">
-            <div className="mb-3 font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground">
-              (b) Comparação com a medição anterior
+            <div className="mb-3 text-[10px] font-bold uppercase tracking-[0.12em] text-primary">
+              Comparação com a medição anterior
             </div>
             <div className="space-y-2">
               {metricas.map((m) => {
@@ -220,8 +220,8 @@ function Historico() {
         ) : null}
 
         <section className="mt-8">
-          <div className="mb-3 font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground">
-            (c) Medições salvas
+          <div className="mb-3 text-[10px] font-bold uppercase tracking-[0.12em] text-primary">
+            Medições salvas
           </div>
 
           {medicoes.isLoading ? (

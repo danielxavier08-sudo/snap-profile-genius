@@ -77,13 +77,13 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Recomendador Herbamed" },
+      { title: "Recomendador Sempre Bem" },
       {
         name: "description",
         content:
           "Sugestões de suplementos a partir da bioimpedância e da faixa de idade, com perfil salvo e histórico de medições.",
       },
-      { property: "og:title", content: "Recomendador Herbamed" },
+      { property: "og:title", content: "Recomendador Sempre Bem" },
       {
         property: "og:description",
         content:
@@ -101,7 +101,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
         rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap",
+        href: "https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Libre+Baskerville:wght@400;700&display=swap",
       },
       { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
     ],
@@ -114,7 +114,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 
 function RootShell({ children }: { children: ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="pt-BR">
       <head>
         <HeadContent />
       </head>
