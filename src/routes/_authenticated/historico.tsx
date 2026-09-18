@@ -37,9 +37,10 @@ export const Route = createFileRoute("/_authenticated/historico")({
 const metricas: { key: string; label: string; unidade: string; melhor: "maior" | "menor" }[] = [
   { key: "peso", label: "Peso", unidade: "kg", melhor: "menor" },
   { key: "imc", label: "IMC", unidade: "", melhor: "menor" },
-  { key: "gorduraCorporal", label: "Gordura corporal", unidade: "%", melhor: "menor" },
-  { key: "massaMuscular", label: "Massa muscular", unidade: "kg", melhor: "maior" },
-  { key: "gorduraVisceral", label: "Gordura visceral", unidade: "", melhor: "menor" },
+  { key: "gorduraPerc", label: "Gordura (%)", unidade: "%", melhor: "menor" },
+  { key: "musculo", label: "Massa muscular", unidade: "kg", melhor: "maior" },
+  { key: "visceral", label: "Gordura visceral", unidade: "", melhor: "menor" },
+  { key: "agua", label: "Água corporal", unidade: "kg", melhor: "maior" },
 ];
 
 function formatarData(iso: string) {
