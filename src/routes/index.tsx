@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
 import { useEffect, useMemo, useRef, useState } from "react";
+import { Camera, CheckCircle2, ChevronRight, ClipboardPenLine, UserRound } from "lucide-react";
 import { Cabecalho } from "@/components/Cabecalho";
 import { useSessao } from "@/hooks/useSessao";
 import {
@@ -16,13 +17,13 @@ import { lerRelatorio, obterPerfil, salvarMedicao } from "@/lib/medicoes.functio
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Recomendador Herbamed — suplementos pela bioimpedância e idade" },
+      { title: "Recomendador Sempre Bem — bioimpedância e idade" },
       {
         name: "description",
         content:
           "Envie a foto do relatório de bioimpedância e receba até 6 sugestões priorizadas de suplementos, ajustadas também pela sua faixa de idade.",
       },
-      { property: "og:title", content: "Recomendador Herbamed" },
+      { property: "og:title", content: "Recomendador Sempre Bem" },
       {
         property: "og:description",
         content:
@@ -144,33 +145,40 @@ function Index() {
     <div className="min-h-screen bg-background font-sans text-foreground">
       <Cabecalho direita={`${preenchidos} campos`} />
 
-      <main className="mx-auto max-w-[430px] px-4 pb-16">
-        <section className="animate-rise pb-5 pt-7">
-          <div className="mb-3 font-mono text-[10px] uppercase tracking-[0.18em] text-accent">
-            (a) Entrada de dados
+      <main className="mx-auto max-w-[720px] bg-surface px-4 pb-20 sm:my-6 sm:rounded-xl sm:border sm:border-border sm:px-8 sm:shadow-sm">
+        <section className="animate-rise border-b border-border pb-6 pt-7">
+          <div className="mb-3 flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.12em] text-primary">
+            <span className="grid h-6 w-6 place-items-center rounded-full bg-primary text-primary-foreground">1</span>
+            Identificação e medição
           </div>
-          <h1 className="text-balance font-display text-[46px] leading-[0.92] tracking-tight">
-            Leitura da
-            <br />
-            bioimpedância
+          <h1 className="text-balance font-display text-[32px] leading-tight text-primary sm:text-[38px]">
+            Nova recomendação
           </h1>
-          <p className="mt-3 max-w-[34ch] text-pretty text-[13px] leading-relaxed text-muted-foreground">
-            Envie a foto do relatório e confira os valores abaixo. Geramos até 6 sugestões priorizadas,
-            considerando também a sua faixa de idade.
+          <p className="mt-3 max-w-[58ch] text-pretty text-[14px] leading-relaxed text-muted-foreground">
+            Registre os dados do cliente ou envie o relatório para preencher a ficha automaticamente.
           </p>
+          <div className="mt-5 flex items-center gap-3 rounded-lg border border-border bg-secondary p-3">
+            <div className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-primary text-primary-foreground"><UserRound size={19} aria-hidden="true" /></div>
+            <div className="min-w-0"><p className="text-sm font-semibold text-primary">{usuario ? "Perfil conectado" : "Atendimento sem perfil"}</p><p className="text-xs text-muted-foreground">{usuario ? "Dados básicos serão reaproveitados nas próximas medições" : "Entre para salvar o cliente e acompanhar as medições"}</p></div>
+            {preenchidos > 0 ? <CheckCircle2 className="ml-auto shrink-0 text-primary" size={19} aria-label={`${preenchidos} campos preenchidos`} /> : null}
+          </div>
         </section>
 
-        <section className="mb-8">
+        <section className="mb-8 pt-6">
+          <div className="mb-4 flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.12em] text-primary">
+            <span className="grid h-6 w-6 place-items-center rounded-full bg-primary text-primary-foreground">2</span>
+            Entrada de dados
+          </div>
           <button
             type="button"
             onClick={() => inputFoto.current?.click()}
-            className="flex w-full items-center gap-3 rounded-2xl border-2 border-dashed border-primary/40 bg-surface/60 p-4 text-left"
+            className="group flex w-full items-center gap-3 rounded-xl border-2 border-dashed border-primary/30 bg-secondary/70 p-4 text-left transition-colors hover:border-primary hover:bg-secondary"
           >
-            <div className="grid h-12 w-12 shrink-0 place-items-center overflow-hidden rounded-xl bg-primary/10 font-display text-lg text-primary">
+            <div className="grid h-12 w-12 shrink-0 place-items-center overflow-hidden rounded-full bg-surface text-primary shadow-sm">
               {previa ? (
                 <img src={previa} alt="Relatório enviado" className="h-full w-full object-cover" />
               ) : (
-                "↑"
+                <Camera size={22} aria-hidden="true" />
               )}
             </div>
             <div className="min-w-0">
@@ -181,7 +189,7 @@ function Index() {
                 {lendo ? "extraindo os valores para os campos abaixo" : "os valores são lidos e preenchidos automaticamente"}
               </div>
             </div>
-            <div className="ml-auto shrink-0 font-mono text-[10px] text-muted-foreground">JPG/PNG</div>
+            <ChevronRight className="ml-auto shrink-0 text-primary" size={20} aria-hidden="true" />
           </button>
           <input
             ref={inputFoto}
@@ -199,8 +207,8 @@ function Index() {
           {erro ? <p className="mt-2 text-[12px] text-danger">{erro}</p> : null}
 
           <div className="mt-6">
-            <div className="mb-3 font-mono text-[10px] uppercase tracking-[0.16em] text-muted-foreground">
-              Preenchimento manual
+            <div className="mb-3 flex items-center gap-2 text-[12px] font-semibold text-primary">
+              <ClipboardPenLine size={17} aria-hidden="true" /> Preenchimento manual
             </div>
             <div className="grid grid-cols-2 gap-3">
               {camposBasicos.map((campo) => (
@@ -234,7 +242,7 @@ function Index() {
 
             <div className="mt-5 space-y-3">
               {camposComFaixa.map((campo) => (
-                <div key={campo.key} className="rounded-2xl border border-border bg-surface p-3">
+                <div key={campo.key} className="rounded-xl border border-border bg-secondary/35 p-3">
                   <div className="mb-2 text-[11px] font-medium">{campo.label}</div>
                   <div className="grid grid-cols-3 gap-2">
                     <input
@@ -286,9 +294,9 @@ function Index() {
             setStatusSalvar("idle");
             setTimeout(() => ancora.current?.scrollIntoView({ behavior: "smooth", block: "start" }), 60);
           }}
-          className="h-14 w-full rounded-2xl bg-accent font-display text-lg tracking-wide text-accent-foreground transition-transform active:translate-y-0.5"
+          className="flex h-14 w-full items-center justify-center gap-2 rounded-xl bg-primary px-4 text-[16px] font-bold text-primary-foreground shadow-md transition-colors hover:bg-accent active:translate-y-0.5"
         >
-          Gerar recomendações
+          Gerar recomendações <ChevronRight size={20} aria-hidden="true" />
         </button>
         <div ref={ancora} className="scroll-mt-28" />
 
@@ -297,9 +305,9 @@ function Index() {
             <div className="mb-4 flex items-end justify-between">
               <div>
                 <div className="font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground">
-                  (b) Resultados
+                   Etapa 3 · Resultados
                 </div>
-                <h2 className="mt-1 font-display text-[30px] leading-none tracking-tight">
+                 <h2 className="mt-1 font-display text-[28px] leading-tight text-primary">
                   {resultado.bloqueadoMenorIdade
                     ? "Sem sugestões"
                     : `${resultado.recomendacoes.length} priorizadas`}
@@ -375,14 +383,14 @@ function Index() {
               {resultado.recomendacoes.map((rec, indice) => (
                 <div
                   key={rec.nome}
-                  className="animate-risefade rounded-2xl border border-border bg-surface p-4"
+                   className="animate-risefade rounded-xl border border-border bg-surface p-4 shadow-sm"
                   style={{ animationDelay: `${0.06 * indice}s` }}
                 >
                   <div className="flex items-start gap-3">
                     <div
                       className={`grid h-10 w-10 shrink-0 place-items-center rounded-xl font-display text-base ${
                         rec.prioridade === 1
-                          ? "bg-accent text-accent-foreground"
+                           ? "bg-primary text-primary-foreground"
                           : "bg-primary text-primary-foreground"
                       }`}
                     >
@@ -486,8 +494,8 @@ function Index() {
 
             {!resultado.bloqueadoMenorIdade ? (
               <div className="mt-6 rounded-2xl border border-border bg-surface p-4">
-                <div className="font-mono text-[10px] uppercase tracking-[0.16em] text-muted-foreground">
-                  (c) Acompanhamento
+                <div className="text-[10px] font-bold uppercase tracking-[0.12em] text-primary">
+                  Etapa 4 · Acompanhamento
                 </div>
                 {usuario ? (
                   <>
@@ -539,8 +547,8 @@ function Index() {
           </section>
         ) : null}
 
-        <div className="mt-8 border-t border-border pt-4 font-mono text-[10px] leading-relaxed text-muted-foreground">
-          p.01 — HERBAMED · Esta sugestão é baseada em dados de bioimpedância e na idade, e não substitui
+        <div className="mt-8 border-t border-border pt-4 text-[10px] leading-relaxed text-muted-foreground">
+          FARMÁCIA SEMPRE BEM · Esta sugestão é baseada em dados de bioimpedância e na idade, e não substitui
           avaliação de nutricionista ou médico.
         </div>
       </main>

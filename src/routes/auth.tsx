@@ -6,13 +6,13 @@ import { Cabecalho } from "@/components/Cabecalho";
 export const Route = createFileRoute("/auth")({
   head: () => ({
     meta: [
-      { title: "Entrar — Recomendador Herbamed" },
+      { title: "Entrar — Recomendador Sempre Bem" },
       {
         name: "description",
         content:
           "Crie sua conta para salvar o perfil e acompanhar suas medições de bioimpedância semana a semana.",
       },
-      { property: "og:title", content: "Entrar — Recomendador Herbamed" },
+      { property: "og:title", content: "Entrar — Recomendador Sempre Bem" },
       {
         property: "og:description",
         content: "Salve seu perfil e acompanhe a evolução das suas medições de bioimpedância.",
@@ -67,12 +67,12 @@ function Auth() {
   return (
     <div className="min-h-screen bg-background text-foreground">
       <Cabecalho />
-      <main className="mx-auto max-w-[430px] px-4 pb-16">
+      <main className="mx-auto max-w-[560px] bg-surface px-4 pb-16 sm:my-6 sm:rounded-xl sm:border sm:border-border sm:px-8 sm:shadow-sm">
         <section className="animate-rise pb-5 pt-7">
-          <div className="mb-3 font-mono text-[10px] uppercase tracking-[0.18em] text-accent">
+          <div className="mb-3 text-[10px] font-bold uppercase tracking-[0.12em] text-primary">
             Acompanhamento
           </div>
-          <h1 className="text-balance font-display text-[42px] leading-[0.92] tracking-tight">
+          <h1 className="text-balance font-display text-[34px] leading-tight text-primary">
             {modo === "entrar" ? "Entrar na conta" : "Criar conta"}
           </h1>
           <p className="mt-3 max-w-[34ch] text-pretty text-[13px] leading-relaxed text-muted-foreground">
@@ -124,7 +124,7 @@ function Auth() {
           <button
             type="submit"
             disabled={enviando}
-            className="h-14 w-full rounded-2xl bg-accent font-display text-lg tracking-wide text-accent-foreground transition-transform active:translate-y-0.5 disabled:opacity-60"
+            className="h-14 w-full rounded-xl bg-primary text-base font-bold text-primary-foreground shadow-md transition-colors hover:bg-accent active:translate-y-0.5 disabled:opacity-60"
           >
             {enviando ? "Aguarde…" : modo === "entrar" ? "Entrar" : "Criar conta"}
           </button>
