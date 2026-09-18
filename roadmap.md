@@ -6,4 +6,4 @@
 - [x] Mostrar quando escolher cada alternativa na leitura atual
 - [x] Validar cenários e visual em celular e computador
 - [x] Aplicar identidade visual e logo da Farmácia Sempre Bem
-- [ ] Validar o novo tema em celular e computador
+- [x] Validar o novo tema em celular e computador
