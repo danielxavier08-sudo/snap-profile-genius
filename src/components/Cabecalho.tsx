@@ -1,7 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { useSessao } from "@/hooks/useSessao";
 import { History, LogIn } from "lucide-react";
-import logoAsset from "@/assets/farmacia-sempre-bem.jpg.asset.json";
+import logoAsset from "@/assets/farmacia-sempre-bem-logo.png.asset.json";
 
 export function Cabecalho({ direita }: { direita?: string }) {
   const { usuario } = useSessao();
@@ -9,13 +9,9 @@ export function Cabecalho({ direita }: { direita?: string }) {
   return (
     <>
       <div className="sticky top-0 z-40 bg-primary text-primary-foreground shadow-sm">
-        <div className="mx-auto flex h-20 max-w-[720px] items-center justify-between px-4 sm:px-6">
-          <Link to="/" className="flex min-w-0 items-center gap-3" aria-label="Início — Farmácia Sempre Bem">
-            <img src={logoAsset.url} alt="Farmácia Sempre Bem" className="h-14 w-[150px] object-contain object-left" />
-            <div className="hidden border-l border-primary-foreground/25 pl-3 leading-tight sm:block">
-              <div className="font-display text-sm">Recomendador</div>
-              <div className="mt-1 text-[10px] uppercase tracking-[0.12em] text-primary-foreground/70">Bioimpedância</div>
-            </div>
+        <div className="mx-auto flex h-24 max-w-[720px] items-center justify-between gap-3 px-4 sm:px-6">
+          <Link to="/" className="flex min-w-0 items-center" aria-label="Início — Farmácia Sempre Bem">
+            <img src={logoAsset.url} alt="Farmácia Sempre Bem — sua saúde sempre em primeiro lugar" className="h-[76px] w-[230px] max-w-[62vw] object-contain object-left" />
           </Link>
           <div className="flex items-center gap-3">
             {direita ? (
