@@ -82,7 +82,7 @@ export type Produto = {
   beneficios: string[];
 };
 
-export const produtos: Record<string, Produto> = {
+export const produtos = {
   spirulina: {
     nome: "Spirulina e Picolinato de Cromo",
     categoria: "Controle de peso / metabolismo",
@@ -272,7 +272,7 @@ export const produtos: Record<string, Produto> = {
       "Sabor frutas vermelhas: fácil de incluir na rotina",
     ],
   },
-};
+} satisfies Record<string, Produto>;
 
 export type Recomendacao = Produto & {
   prioridade: number;
