@@ -333,6 +333,44 @@ function Index() {
               </div>
             ) : null}
 
+            {resultado.leituras.length ? (
+              <div className="animate-risefade mb-5 rounded-2xl border border-border bg-surface p-4">
+                <div className="mb-2.5 font-mono text-[10px] uppercase tracking-[0.16em] text-primary">
+                  O que a sua medição mostra
+                </div>
+                <div className="space-y-2.5">
+                  {resultado.leituras.map((l) => (
+                    <div key={l.rotulo} className="flex gap-2.5">
+                      <span
+                        className={`mt-1.5 h-2 w-2 shrink-0 rounded-full ${
+                          l.situacao === "normal"
+                            ? "bg-primary"
+                            : l.situacao === "atencao"
+                              ? "bg-danger"
+                              : "bg-accent"
+                        }`}
+                      />
+                      <div className="min-w-0">
+                        <div className="text-[12.5px] font-semibold">
+                          {l.rotulo}
+                          <span className="ml-1.5 font-mono text-[9px] uppercase tracking-[0.14em] text-muted-foreground">
+                            {l.situacao === "normal"
+                              ? "normal"
+                              : l.situacao === "abaixo"
+                                ? "abaixo do ideal"
+                                : l.situacao === "acima"
+                                  ? "acima do ideal"
+                                  : "atenção"}
+                          </span>
+                        </div>
+                        <p className="mt-0.5 text-[12px] leading-snug text-muted-foreground">{l.texto}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ) : null}
+
             <div className="space-y-3">
               {resultado.recomendacoes.map((rec, indice) => (
                 <div
@@ -363,16 +401,29 @@ function Index() {
                           {rec.prioridade === 1 ? "Prioridade alta" : rec.prioridade === 2 ? "Média" : "Manutenção"}
                         </span>
                       </div>
-                      <div className="mt-1 text-[15px] font-semibold">{rec.nome}</div>
+                      <div className="mt-1 text-[15px] font-semibold leading-tight">{rec.nome}</div>
                       <div className="mt-1 font-mono text-[9px] uppercase tracking-[0.14em] text-muted-foreground">
-                        {rec.origem === "idade" ? "Sugerido pela idade" : "Sugerido pela bioimpedância"}
+                        {rec.origem === "idade" ? "Sugerido pela sua idade" : "Sugerido pela bioimpedância"}
                       </div>
-                      <p className="mt-1 text-[12px] leading-snug text-muted-foreground">
-                        Pode ser interessante considerar — {rec.motivo}.
-                      </p>
+
+                      <div className="mt-2.5 rounded-xl border border-accent/20 bg-accent/5 p-2.5">
+                        <div className="mb-1 font-mono text-[9px] uppercase tracking-[0.14em] text-accent">
+                          Por que para você
+                        </div>
+                        <p className="text-[12px] font-medium leading-snug">{rec.motivo}</p>
+                        <p className="mt-1.5 text-[12px] leading-relaxed text-muted-foreground">{rec.detalhe}</p>
+                      </div>
+
+                      <div className="mt-2.5">
+                        <div className="mb-1 font-mono text-[9px] uppercase tracking-[0.14em] text-muted-foreground">
+                          Como age no corpo
+                        </div>
+                        <p className="text-[12px] leading-relaxed text-muted-foreground">{rec.comoAge}</p>
+                      </div>
+
                       <div className="mt-2.5 rounded-xl border border-primary/10 bg-primary/5 p-2.5">
                         <div className="mb-1.5 font-mono text-[9px] uppercase tracking-[0.14em] text-primary">
-                          Benefícios para o cliente
+                          O que você ganha
                         </div>
                         <ul className="space-y-1">
                           {rec.beneficios.map((b) => (
@@ -383,11 +434,34 @@ function Index() {
                           ))}
                         </ul>
                       </div>
+
+                      <div className="mt-2.5 grid gap-2">
+                        <div>
+                          <div className="mb-0.5 font-mono text-[9px] uppercase tracking-[0.14em] text-muted-foreground">
+                            Resultado esperado
+                          </div>
+                          <p className="text-[12px] leading-snug text-muted-foreground">{rec.resultadoEsperado}</p>
+                        </div>
+                        <div>
+                          <div className="mb-0.5 font-mono text-[9px] uppercase tracking-[0.14em] text-muted-foreground">
+                            Como tomar
+                          </div>
+                          <p className="text-[12px] leading-snug text-muted-foreground">{rec.comoUsar}</p>
+                        </div>
+                      </div>
+
+                      <div className="mt-2.5 rounded-xl border border-danger/25 bg-danger/5 p-2.5">
+                        <div className="mb-1 font-mono text-[9px] uppercase tracking-[0.14em] text-danger">
+                          Atenção antes de usar
+                        </div>
+                        <p className="text-[11.5px] leading-snug text-foreground/80">{rec.cuidados}</p>
+                      </div>
                     </div>
                   </div>
                 </div>
               ))}
             </div>
+
 
             {!resultado.bloqueadoMenorIdade ? (
               <div className="mt-6 rounded-2xl border border-border bg-surface p-4">
