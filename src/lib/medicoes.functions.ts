@@ -147,8 +147,8 @@ export const salvarMedicao = createServerFn({ method: "POST" })
     const dados: Perfil = { ...perfilVazio, ...data.dados };
     const { error } = await context.supabase.from("medicoes").insert({
       user_id: context.userId,
-      dados: dados as unknown as Record<string, unknown>,
-      recomendacoes: data.recomendacoes as unknown as Record<string, unknown>[],
+      dados: JSON.parse(JSON.stringify(dados)),
+      recomendacoes: JSON.parse(JSON.stringify(data.recomendacoes)),
       observacoes: data.observacoes ?? null,
     });
     if (error) throw new Error(error.message);
