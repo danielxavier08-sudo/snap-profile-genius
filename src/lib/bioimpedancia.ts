@@ -648,7 +648,7 @@ export function recomendar(p: Perfil): Resultado {
         produtos.spirulina,
         1,
         `Gordura em ${num(p.gorduraPerc)}%, acima da faixa normal`,
-        "O primeiro passo de quem tem gordura acima da faixa é comer menos sem passar fome. A spirulina com picolinato de cromo trabalha exatamente nesse ponto: ajuda na saciedade e na vontade de doce, que é onde a maioria das dietas falha.",
+        "O cromo participa do metabolismo de carboidratos, proteínas e gorduras. Seu efeito costuma ser modesto: alimentação, sono e atividade física continuam sendo os principais fatores para reduzir gordura.",
       );
       add(
         produtos.psylax,
@@ -661,7 +661,7 @@ export function recomendar(p: Perfil): Resultado {
       produtos.curcuma,
       2,
       "Gordura em excesso mantém inflamação leve no corpo",
-      "Gordura acumulada libera substâncias que mantêm o corpo levemente inflamado o tempo todo — é isso que trava a perda de peso e dói nas juntas. A curcumina age nessa inflamação de baixo grau.",
+      "Gordura acumulada pode contribuir para inflamação de baixo grau e sobrecarga das articulações. A cúrcuma pode ser considerada como apoio, sem substituir alimentação, movimento ou tratamento.",
     );
   }
 
@@ -683,7 +683,7 @@ export function recomendar(p: Perfil): Resultado {
           produtos.spirulina,
           1,
           `Gordura visceral em nível ${p.visceral}`,
-          "A gordura visceral cai junto do total de calorias do dia. A spirulina com cromo ajuda a segurar a fome e o doce, que é o que mais atrapalha esse processo.",
+          "A redução da gordura visceral depende principalmente de alimentação, sono e atividade física. O cromo pode ser um apoio modesto ao metabolismo, mas não age sozinho.",
         );
       }
     } else {
@@ -750,7 +750,7 @@ export function recomendar(p: Perfil): Resultado {
       produtos.hidrasais,
       1,
       `Água corporal em ${num(p.agua)} kg, abaixo do normal`,
-      "Beber água sem sais não resolve: sem sódio, potássio e magnésio o corpo elimina o líquido pela urina. Os eletrólitos do Hidrasais são o que segura essa água dentro das células.",
+      "Quando há perda de sais por suor, calor, vômitos ou diarreia, eletrólitos podem ajudar na reposição. Se não houve essa perda, água e alimentação costumam ser suficientes.",
     );
     add(
       produtos.magplus,
@@ -892,7 +892,7 @@ export function recomendar(p: Perfil): Resultado {
           ? "A produção de colágeno cai cerca de 1% por ano depois dos 30"
           : "Polivitamínico masculino de manutenção",
         p.sexo === "feminino"
-          ? "Depois dos 30 o corpo produz menos colágeno a cada ano, e a pele perde firmeza antes de qualquer outro sinal. O colágeno hidrolisado repõe os aminoácidos usados nessa reposição."
+          ? "Depois dos 30 a produção de colágeno diminui gradualmente. Os peptídeos Verisol fornecem aminoácidos usados pela pele, com resultado variável entre pessoas."
           : "Fórmula com zinco e complexo B, ajustada às necessidades masculinas, para energia e imunidade na rotina intensa.",
         "idade",
       );
@@ -962,10 +962,10 @@ export function recomendar(p: Perfil): Resultado {
         "idade",
       );
       add(
-        produtos.kitSupra,
+        produtos.seniorSupra,
         3,
-        "Imunidade merece atenção extra a partir dos 60",
-        "A resposta de defesa fica mais lenta com a idade. O kit reúne as vitaminas e minerais mais ligados à imunidade em um só protocolo, com melhor custo do que comprar separado.",
+        "Polivitamínico de manutenção voltado à fase 60+",
+        "A fórmula sênior é uma opção mais adequada à faixa de idade do que um polivitamínico adulto genérico. Ainda assim, não substitui alimentação nem exames.",
         "idade",
       );
       add(
