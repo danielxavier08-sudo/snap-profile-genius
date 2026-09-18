@@ -393,6 +393,87 @@ export const produtos = {
     cuidados:
       "Não trata infecção urinária: ardência, febre ou dor nas costas exigem médico e, muitas vezes, antibiótico. Cuidado com anticoagulantes e com histórico de pedra nos rins.",
   },
+  psyllium: {
+    nome: "Psyllium",
+    categoria: "Fibras / saúde intestinal",
+    comoAge: "O psyllium é uma fibra solúvel que absorve água e forma um gel, ajudando o trânsito intestinal e aumentando a saciedade.",
+    beneficios: ["Ajuda a regular o intestino", "Pode aumentar a saciedade", "Contribui para o controle de colesterol e glicemia quando associado à alimentação"],
+    resultadoEsperado: "O intestino pode responder em alguns dias; os efeitos metabólicos dependem do uso contínuo e da alimentação.",
+    comoUsar: "Conforme o rótulo, sempre diluído e acompanhado de bastante água.",
+    cuidados: "Não use com dificuldade para engolir ou suspeita de obstrução intestinal. Separe de medicamentos por pelo menos 2 horas.",
+  },
+  picolinatoCromo: {
+    nome: "Picolinato de Cromo",
+    categoria: "Metabolismo / controle alimentar",
+    comoAge: "O cromo participa do metabolismo de carboidratos, proteínas e gorduras. Não emagrece sozinho e seu benefício tende a ser modesto.",
+    beneficios: ["Apoio ao metabolismo de macronutrientes", "Opção sem fibras para quem não tolera psyllium", "Pode complementar uma rotina alimentar estruturada"],
+    resultadoEsperado: "O benefício não é imediato e só deve ser avaliado junto da alimentação e das próximas medições.",
+    comoUsar: "Use apenas na dose indicada no rótulo e junto de uma refeição.",
+    cuidados: "Quem usa remédio para diabetes, tem doença renal ou hepática, está grávida ou amamentando deve consultar um profissional.",
+  },
+  complexoB: {
+    nome: "Complexo B Supra",
+    categoria: "Energia / metabolismo",
+    comoAge: "As vitaminas do complexo B participam das reações que transformam os alimentos em energia, mas não funcionam como estimulante.",
+    beneficios: ["Complementa várias vitaminas B em uma fórmula", "Apoia o metabolismo energético", "Alternativa de manutenção quando não há indicação específica de B12"],
+    resultadoEsperado: "Pode ajudar quando existe ingestão insuficiente; sem deficiência, não é esperado aumento marcante de energia.",
+    comoUsar: "Conforme o rótulo, geralmente junto de uma refeição.",
+    cuidados: "Não combine com outros polivitamínicos sem conferir as doses. Cansaço persistente precisa de avaliação e exames.",
+  },
+  seniorSupra: {
+    nome: "Polivitamínico Sênior Supra",
+    categoria: "Polivitamínico 60+",
+    comoAge: "Reúne micronutrientes de manutenção em uma apresentação voltada à fase madura, sem substituir alimentação ou exames.",
+    beneficios: ["Opção de manutenção para pessoas com 60 anos ou mais", "Concentra vitaminas e minerais em uma rotina simples", "Evita montar vários suplementos separados"],
+    resultadoEsperado: "Benefícios são mais prováveis quando havia ingestão insuficiente; não deve prometer melhora sem deficiência.",
+    comoUsar: "Conforme a dose do rótulo, junto de uma refeição.",
+    cuidados: "Não combine com outro polivitamínico. Confirme com médico ou farmacêutico se usa anticoagulante ou vários medicamentos.",
+  },
+  magBisglicinato: {
+    nome: "Mag Plus Bisglicinato",
+    categoria: "Magnésio / manutenção",
+    comoAge: "O magnésio participa da função muscular e nervosa; a forma bisglicinato costuma ter boa tolerância digestiva.",
+    beneficios: ["Alternativa de magnésio com boa tolerância", "Apoia a função muscular", "Participa do funcionamento do sistema nervoso"],
+    resultadoEsperado: "A percepção depende de haver baixa ingestão ou deficiência; não é um sedativo.",
+    comoUsar: "Conforme o rótulo, sem ultrapassar a dose diária.",
+    cuidados: "Doença renal exige orientação. Separe de alguns antibióticos e do remédio de tireoide conforme orientação profissional.",
+  },
+  magBiotreonato: {
+    nome: "Mag Plus Biotreonato",
+    categoria: "Magnésio / bem-estar",
+    comoAge: "É uma apresentação de magnésio voltada ao aporte do mineral; a bioimpedância não consegue mostrar qual forma é necessária.",
+    beneficios: ["Alternativa dentro da linha Mag Plus", "Apoia a ingestão diária de magnésio", "Pode ser escolhida conforme tolerância e orientação"],
+    resultadoEsperado: "Não há garantia de melhora de memória ou sono; o resultado depende da necessidade individual.",
+    comoUsar: "Conforme o rótulo e, de preferência, com orientação profissional.",
+    cuidados: "Não use em doença renal sem avaliação. Não some várias formas de magnésio no mesmo dia.",
+  },
+  omega3: {
+    nome: "Ômega 3 (óleo de peixe)",
+    categoria: "Qualidade de vida / gorduras essenciais",
+    comoAge: "EPA e DHA são gorduras que participam das membranas celulares. A bioimpedância isolada não confirma necessidade nem substitui exame de sangue.",
+    beneficios: ["Opção de suporte nutricional geral", "Fonte de EPA e DHA", "Pode ser considerada quando o consumo de peixes é baixo"],
+    resultadoEsperado: "Não costuma gerar sensação imediata; a avaliação adequada depende da dieta e, quando indicado, de exames.",
+    comoUsar: "Conforme o teor de EPA e DHA informado no rótulo, junto de uma refeição.",
+    cuidados: "Alergia a peixe e uso de anticoagulante exigem orientação. Não é indicação automática para colesterol alto.",
+  },
+  vitaminaD3: {
+    nome: "Vitamina D3 Supra",
+    categoria: "Ossos / vitamina D",
+    comoAge: "A vitamina D ajuda o intestino a absorver cálcio, mas a dose correta depende de exame de sangue e avaliação clínica.",
+    beneficios: ["Apoia a absorção de cálcio", "Participa da saúde óssea e muscular", "Alternativa individual quando há indicação profissional"],
+    resultadoEsperado: "A correção deve ser confirmada por exame; não é possível medir vitamina D pela bioimpedância.",
+    comoUsar: "Somente na dose do rótulo ou prescrita, junto de uma refeição.",
+    cuidados: "Doses altas podem causar excesso de cálcio e lesão renal. Não combinar fórmulas com vitamina D sem somar as doses.",
+  },
+  colageno2Supra: {
+    nome: "Colágeno Tipo 2 Supra",
+    categoria: "Articulações",
+    comoAge: "É outra apresentação de colágeno tipo 2 voltada ao suporte da cartilagem; não reconstrói sozinho uma articulação lesionada.",
+    beneficios: ["Alternativa simples para suporte articular", "Foco específico em cartilagem", "Pode ser escolhida conforme fórmula e apresentação"],
+    resultadoEsperado: "Quando há benefício, ele costuma ser gradual, após semanas de uso contínuo.",
+    comoUsar: "Conforme o rótulo, sem associar vários colágenos tipo 2 ao mesmo tempo.",
+    cuidados: "Dor forte, inchaço ou limitação de movimento exigem avaliação médica. Confira a origem em caso de alergia.",
+  },
   colagenoHidro: {
     nome: "Colágeno Hidrolisado (frutas vermelhas)",
     categoria: "Beleza / pele",
@@ -409,6 +490,11 @@ export const produtos = {
   },
 } satisfies Record<string, Produto>;
 
+export type Alternativa = {
+  nome: string;
+  quandoEscolher: string;
+};
+
 export type Recomendacao = Produto & {
   prioridade: number;
   /** Frase curta com o dado que gerou a indicação. */
@@ -416,6 +502,7 @@ export type Recomendacao = Produto & {
   /** Explicação completa ligando o dado da medição ao produto. */
   detalhe: string;
   origem: "bioimpedancia" | "idade";
+  alternativas: Alternativa[];
 };
 
 export type Leitura = {
@@ -451,6 +538,62 @@ function bmrPrevisto(p: Perfil): number | null {
   return Math.round(p.sexo === "masculino" ? base + 5 : base - 161);
 }
 
+function alternativasPara(produto: Produto, p: Perfil): Alternativa[] {
+  const opcoes: Record<string, Alternativa[]> = {
+    [produtos.spirulina.nome]: [
+      { nome: produtos.picolinatoCromo.nome, quandoEscolher: "se prefere cápsulas sem fibra; o efeito no peso é modesto e não substitui alimentação" },
+      { nome: produtos.psyllium.nome, quandoEscolher: "se a prioridade também é intestino preso e você consegue beber bastante água" },
+      { nome: produtos.psylax.nome, quandoEscolher: "outra apresentação de Plantago ovata; escolha uma fibra, não as duas juntas" },
+    ],
+    [produtos.psylax.nome]: [
+      { nome: produtos.psyllium.nome, quandoEscolher: "mesma fibra-base em outra apresentação; compare dose e modo de preparo no rótulo" },
+      { nome: produtos.picolinatoCromo.nome, quandoEscolher: "se não tolera fibras; não oferece o mesmo benefício intestinal" },
+    ],
+    [produtos.creatina.nome]: [
+      { nome: "Creatina pura 100%", quandoEscolher: "equivalente de catálogo quando o rótulo também informa creatina monoidratada pura" },
+    ],
+    [produtos.magplus.nome]: [
+      { nome: produtos.magBisglicinato.nome, quandoEscolher: "se busca outra forma com boa tolerância digestiva" },
+      { nome: produtos.magBiotreonato.nome, quandoEscolher: "se houver orientação para essa apresentação; não associe várias formas" },
+    ],
+    [produtos.magplusSupra.nome]: [
+      { nome: produtos.magBisglicinato.nome, quandoEscolher: "se a tolerância digestiva for a principal preocupação" },
+      { nome: produtos.magplus.nome, quandoEscolher: "se prefere magnésio dimalato; não use os dois juntos" },
+    ],
+    [produtos.flexigold.nome]: [
+      { nome: produtos.colageno2Supra.nome, quandoEscolher: "se busca uma fórmula mais simples focada em colágeno tipo 2" },
+      { nome: "FlexiGold Condro", quandoEscolher: "somente após comparar a composição e confirmar que ela combina com sua necessidade" },
+    ],
+    [produtos.colageno2.nome]: [
+      { nome: produtos.colageno2Supra.nome, quandoEscolher: "outra apresentação com o mesmo objetivo geral; compare composição e dose" },
+      { nome: produtos.flexigold.nome, quandoEscolher: "se prefere um conjunto com vitaminas, sem duplicar fórmulas" },
+    ],
+    [produtos.calcivitam.nome]: [
+      { nome: produtos.vitaminaD3.nome, quandoEscolher: "apenas quando exame ou profissional indicar vitamina D isolada" },
+      { nome: "Cálcio + Magnésio + Zinco + D3", quandoEscolher: "se a composição completa e as doses forem adequadas após avaliação" },
+    ],
+    [produtos.b12.nome]: [
+      { nome: "Cobalamax", quandoEscolher: "outra apresentação de vitamina B12; compare forma e dose no rótulo" },
+      { nome: produtos.complexoB.nome, quandoEscolher: "para manutenção ampla, não para tratar deficiência de B12 confirmada" },
+    ],
+    [produtos.coq10.nome]: [
+      { nome: "Coenzima Q10 30 cáps", quandoEscolher: "mesmo ativo em outra apresentação; compare miligramas por dose" },
+      { nome: produtos.complexoB.nome, quandoEscolher: "se a meta é manutenção nutricional geral; não tem a mesma ação da Q10" },
+    ],
+    [produtos.supraAZ.nome]: [
+      { nome: p.idade !== null && p.idade >= 60 ? produtos.seniorSupra.nome : (p.sexo === "masculino" ? produtos.supraHomem.nome : produtos.supraMulher.nome), quandoEscolher: "se prefere uma fórmula direcionada à sua fase de vida ou sexo" },
+    ],
+    [produtos.kitSupra.nome]: [
+      { nome: "Polivitamínico Imunidade Supra", quandoEscolher: "se prefere uma única fórmula em vez de um kit; não use ambos" },
+      { nome: produtos.vitcZinco.nome, quandoEscolher: "opção mais simples, sem duplicar com outro polivitamínico" },
+    ],
+    [produtos.hidrasais.nome]: [
+      { nome: "Hidrasais em outro sabor ou apresentação", quandoEscolher: "o objetivo é o mesmo; escolha apenas pela composição, dose e preferência" },
+    ],
+  };
+  return (opcoes[produto.nome] ?? []).slice(0, 3);
+}
+
 export function recomendar(p: Perfil): Resultado {
   if (p.idade !== null && p.idade < 18) {
     return {
@@ -480,7 +623,7 @@ export function recomendar(p: Perfil): Resultado {
       }
       return;
     }
-    lista.push({ ...produto, prioridade, motivo, detalhe, origem });
+    lista.push({ ...produto, prioridade, motivo, detalhe, origem, alternativas: [] });
   };
 
   const leituras: Leitura[] = [];
@@ -864,6 +1007,11 @@ export function recomendar(p: Perfil): Resultado {
         : null;
 
   lista.sort((a, b) => a.prioridade - b.prioridade);
+  for (const recomendacao of lista) {
+    recomendacao.alternativas = alternativasPara(recomendacao, p).filter(
+      (alternativa) => alternativa.nome !== recomendacao.nome,
+    );
+  }
 
   return {
     bloqueadoMenorIdade: false,
