@@ -450,6 +450,27 @@ function Index() {
                         </div>
                       </div>
 
+                      {rec.alternativas.length ? (
+                        <div className="mt-2.5 border-t border-border pt-2.5">
+                          <div className="mb-1.5 font-mono text-[9px] uppercase tracking-[0.14em] text-primary">
+                            Outras opções para o mesmo objetivo
+                          </div>
+                          <div className="space-y-1.5">
+                            {rec.alternativas.map((alternativa) => (
+                              <div key={alternativa.nome} className="rounded-lg bg-primary/5 px-2.5 py-2">
+                                <div className="text-[11.5px] font-semibold">{alternativa.nome}</div>
+                                <p className="mt-0.5 text-[11px] leading-snug text-muted-foreground">
+                                  {alternativa.quandoEscolher}
+                                </p>
+                              </div>
+                            ))}
+                          </div>
+                          <p className="mt-1.5 text-[10.5px] leading-snug text-muted-foreground">
+                            São opções, não itens para usar juntos. Confira o rótulo e escolha apenas uma.
+                          </p>
+                        </div>
+                      ) : null}
+
                       <div className="mt-2.5 rounded-xl border border-danger/25 bg-danger/5 p-2.5">
                         <div className="mb-1 font-mono text-[9px] uppercase tracking-[0.14em] text-danger">
                           Atenção antes de usar
