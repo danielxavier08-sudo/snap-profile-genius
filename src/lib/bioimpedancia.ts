@@ -91,23 +91,23 @@ export type Produto = {
 
 export const produtos = {
   spirulina: {
-    nome: "Spirulina e Picolinato de Cromo",
+    nome: "Picolinato de Cromo",
     categoria: "Controle de peso / metabolismo",
     comoAge:
-      "A spirulina é uma alga com cerca de 60% de proteína, que ajuda a segurar a fome entre as refeições. O picolinato de cromo participa da ação da insulina, o hormônio que coloca o açúcar do sangue dentro das células — quando essa resposta funciona melhor, a vontade de doce costuma diminuir.",
+      "O cromo participa do metabolismo de carboidratos, proteínas e gorduras. Ele não emagrece sozinho; pode ser apenas um apoio modesto quando alimentação e atividade física já estão ajustadas.",
     beneficios: [
-      "Ajuda a controlar o apetite e a vontade de doces ao longo do dia",
-      "Fonte de proteína vegetal, vitaminas do complexo B e antioxidantes",
-      "Apoia a dieta de redução de gordura sem uso de estimulantes",
+      "Apoia o metabolismo dos macronutrientes",
+      "Não contém estimulantes",
+      "Pode complementar uma rotina alimentar estruturada",
     ],
     resultadoEsperado:
-      "Menos fome fora de hora já nas primeiras 2 a 3 semanas. A perda de gordura aparece na próxima bioimpedância quando vem junto de alimentação ajustada.",
-    comoUsar: "Conforme o rótulo, normalmente antes das refeições principais, com água.",
+      "O benefício tende a ser pequeno e gradual; redução de gordura depende principalmente da alimentação, sono e movimento.",
+    comoUsar: "Conforme a dose indicada no rótulo, junto de uma refeição.",
     cuidados:
-      "Não indicado na gravidez e amamentação. Quem tem doença autoimune, doença da tireoide, problemas renais ou usa medicação para diabetes deve falar com o médico antes, porque o cromo pode somar efeito ao remédio.",
+      "Não indicado na gravidez e amamentação sem orientação. Quem tem doença renal ou hepática, ou usa medicação para diabetes, deve falar com o médico antes.",
   },
   curcuma: {
-    nome: "Cúrcuma 130mg Curcumin",
+    nome: "Cúrcuma Máxima",
     categoria: "Antioxidante / anti-inflamatório",
     comoAge:
       "O excesso de gordura, principalmente a que fica em volta dos órgãos, mantém o corpo num estado de inflamação leve e constante. A curcumina age justamente nessa inflamação de baixo grau e no estresse oxidativo das células.",
@@ -123,7 +123,7 @@ export const produtos = {
       "Evite se usa anticoagulante (varfarina e similares), se tem pedra na vesícula ou obstrução das vias biliares, e nos 15 dias antes de uma cirurgia. Suspenda se houver azia persistente.",
   },
   creatina: {
-    nome: "Creatina Monoidratada 300g (100% Pura)",
+    nome: "Creatina pura 100%",
     categoria: "Performance / força muscular",
     comoAge:
       "A creatina recarrega a energia rápida do músculo. Com mais energia disponível, você sustenta mais repetições no treino, e é esse estímulo maior que constrói músculo — o suplemento mais estudado do mundo para isso.",
@@ -230,7 +230,7 @@ export const produtos = {
       "Evite por conta própria em doença renal. Pode interagir com alguns antibióticos — separe as tomadas por 2 horas.",
   },
   hidrasais: {
-    nome: "Hidrasais Tonic Eletrólitos (4 envelopes)",
+    nome: "Hidrasais",
     categoria: "Hidratação / reposição eletrolítica",
     comoAge:
       "Beber água sem sais faz o corpo eliminar boa parte dela pela urina. Sódio, potássio e magnésio são o que mantém a água dentro do corpo e das células.",
@@ -246,7 +246,7 @@ export const produtos = {
       "Contém sódio: quem tem pressão alta, insuficiência cardíaca ou doença renal deve falar com o médico antes de usar todos os dias.",
   },
   vitcZinco: {
-    nome: "Vitamina C e Zinco Immunity",
+    nome: "Vitamina C + Zinco",
     categoria: "Imunidade",
     comoAge:
       "A vitamina C protege as células da oxidação e é necessária para produzir colágeno; o zinco é peça central na multiplicação das células de defesa.",
@@ -261,7 +261,7 @@ export const produtos = {
       "Zinco em excesso por longos períodos atrapalha a absorção de cobre; não passe da dose do rótulo. Doses altas de vitamina C pedem cautela em quem tem histórico de pedra nos rins.",
   },
   kitSupra: {
-    nome: "Kit Vitamina Supra Imunidade (A+C+D+E+Zinco+Selênio)",
+    nome: "Polivitamínico Imunidade Supra",
     categoria: "Imunidade completa",
     comoAge:
       "Reúne as vitaminas e minerais mais ligados à defesa do corpo, cuja absorção naturalmente cai com a idade e com dietas restritivas.",
@@ -334,7 +334,7 @@ export const produtos = {
       "Quem usa metformina ou remédio para gastrite/refluxo (omeprazol e similares) e quem é vegetariano tem mais risco de falta — vale dosar a B12 no sangue. Formigamento persistente nas mãos e pés pede avaliação médica.",
   },
   coq10: {
-    nome: "COQ10 - Coenzima Q10 200mg - 30 cáps",
+    nome: "Coenzima Q10",
     categoria: "Energia celular",
     comoAge:
       "A coenzima Q10 trabalha dentro da mitocôndria, a usina de energia da célula. A produção natural dela cai com a idade e também com o uso de estatinas para colesterol.",
@@ -403,7 +403,7 @@ export const produtos = {
     cuidados: "Não use com dificuldade para engolir ou suspeita de obstrução intestinal. Separe de medicamentos por pelo menos 2 horas.",
   },
   picolinatoCromo: {
-    nome: "Picolinato de Cromo",
+    nome: "Picolinato de Cromo (outra apresentação)",
     categoria: "Metabolismo / controle alimentar",
     comoAge: "O cromo participa do metabolismo de carboidratos, proteínas e gorduras. Não emagrece sozinho e seu benefício tende a ser modesto.",
     beneficios: ["Apoio ao metabolismo de macronutrientes", "Opção sem fibras para quem não tolera psyllium", "Pode complementar uma rotina alimentar estruturada"],
@@ -475,14 +475,14 @@ export const produtos = {
     cuidados: "Dor forte, inchaço ou limitação de movimento exigem avaliação médica. Confira a origem em caso de alergia.",
   },
   colagenoHidro: {
-    nome: "Colágeno Hidrolisado (frutas vermelhas)",
+    nome: "Verisol + Ácido Hialurônico + Q10 + 17 vitaminas e minerais",
     categoria: "Beleza / pele",
     comoAge:
-      "A partir dos 30 anos a produção própria de colágeno cai cerca de 1% por ano. O colágeno hidrolisado entrega os aminoácidos que a pele usa para repor essa perda.",
+      "Os peptídeos de colágeno Verisol fornecem aminoácidos usados pela pele; a fórmula também reúne ácido hialurônico, Q10, vitaminas e minerais.",
     beneficios: [
       "Fácil absorção e fácil de incluir na rotina",
       "Auxilia na elasticidade e na hidratação da pele",
-      "Sabor frutas vermelhas, para tomar com água",
+      "Disponível em diferentes sabores e apresentações no catálogo",
     ],
     resultadoEsperado: "Pele mais hidratada e elástica a partir de 8 a 12 semanas.",
     comoUsar: "1 dose ao dia diluída em água, sempre no mesmo horário.",
@@ -549,9 +549,7 @@ function alternativasPara(produto: Produto, p: Perfil): Alternativa[] {
       { nome: produtos.psyllium.nome, quandoEscolher: "mesma fibra-base em outra apresentação; compare dose e modo de preparo no rótulo" },
       { nome: produtos.picolinatoCromo.nome, quandoEscolher: "se não tolera fibras; não oferece o mesmo benefício intestinal" },
     ],
-    [produtos.creatina.nome]: [
-      { nome: "Creatina pura 100%", quandoEscolher: "equivalente de catálogo quando o rótulo também informa creatina monoidratada pura" },
-    ],
+    [produtos.creatina.nome]: [],
     [produtos.magplus.nome]: [
       { nome: produtos.magBisglicinato.nome, quandoEscolher: "se busca outra forma com boa tolerância digestiva" },
       { nome: produtos.magBiotreonato.nome, quandoEscolher: "se houver orientação para essa apresentação; não associe várias formas" },
@@ -1007,9 +1005,10 @@ export function recomendar(p: Perfil): Resultado {
         : null;
 
   lista.sort((a, b) => a.prioridade - b.prioridade);
+  const nomesPrincipais = new Set(lista.slice(0, 6).map((recomendacao) => recomendacao.nome));
   for (const recomendacao of lista) {
     recomendacao.alternativas = alternativasPara(recomendacao, p).filter(
-      (alternativa) => alternativa.nome !== recomendacao.nome,
+      (alternativa) => alternativa.nome !== recomendacao.nome && !nomesPrincipais.has(alternativa.nome),
     );
   }
 
