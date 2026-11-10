@@ -592,6 +592,163 @@ function alternativasPara(produto: Produto, p: Perfil): Alternativa[] {
   return (opcoes[produto.nome] ?? []).slice(0, 3);
 }
 
+/**
+ * Strategy: uma função de recomendação por faixa etária para cada faixa.
+ *
+ * Antes deste padrão, `recomendar()` tinha uma cadeia if/else if/else que
+ * cobria as quatro faixas etárias num único bloco gigante. Adicionar uma
+ * faixa nova (por exemplo, "menos de 18 anos com acompanhamento") exigia
+ * editar essa cadeia inteira e reler todo o bloco para não quebrar as
+ * faixas vizinhas.
+ *
+ * Com o Strategy, cada faixa é uma função independente, isolada das demais.
+ * Adicionar uma faixa nova é só adicionar uma nova entrada no objeto abaixo,
+ * sem tocar nas estratégias já existentes e testadas (princípio aberto/fechado).
+ */
+type AdicionarRecomendacao = (
+  produto: Produto,
+  prioridade: number,
+  motivo: string,
+  detalhe: string,
+  origem?: "bioimpedancia" | "idade",
+) => void;
+
+type EstrategiaRecomendacaoPorIdade = (p: Perfil, add: AdicionarRecomendacao) => void;
+
+const estrategiasPorFaixaEtaria: Record<string, EstrategiaRecomendacaoPorIdade> = {
+  "18–29 anos": (p, add) => {
+    add(
+      produtos.creatina,
+      2,
+      "18 a 29 anos: melhor fase para construir força e músculo",
+      "Nesta faixa a resposta ao treino é a maior da vida, e o músculo construído agora é o que protege articulações e metabolismo nas décadas seguintes. A creatina é o suplemento com mais estudos para acelerar esse ganho.",
+      "idade",
+    );
+    add(
+      produtos.hidrasais,
+      3,
+      "Rotina ativa pede reposição de eletrólitos",
+      "Treino, calor e rotina corrida fazem perder sais junto do suor. Repor eletrólitos mantém a água dentro das células e sustenta o rendimento.",
+      "idade",
+    );
+    add(
+      p.sexo === "masculino" ? produtos.supraHomem : produtos.supraMulher,
+      3,
+      "Polivitamínico de manutenção para 18 a 29 anos",
+      "Alimentação irregular nessa fase deixa pequenas faltas de várias vitaminas ao mesmo tempo, o que aparece como cansaço. O polivitamínico da fórmula certa para o seu sexo cobre essas lacunas.",
+      "idade",
+    );
+  },
+  "30–44 anos": (p, add) => {
+    add(
+      produtos.b12,
+      2,
+      "30 a 44 anos: energia e metabolismo em rotina intensa",
+      "É a faixa de maior carga de trabalho e menor tempo para comer bem. A B12 na forma ativa sustenta a produção das células que levam oxigênio, ponto central do cansaço dessa fase.",
+      "idade",
+    );
+    add(
+      produtos.magplusSupra,
+      3,
+      "A partir dos 30 o magnésio faz diferença no sono e no estresse",
+      "O magnésio participa do relaxamento muscular e da regulação do sistema nervoso. Repor ajuda em sono leve, tensão e cãibras — queixas típicas dessa faixa.",
+      "idade",
+    );
+    add(
+      p.sexo === "feminino" ? produtos.colagenoHidro : produtos.supraHomem,
+      3,
+      p.sexo === "feminino"
+        ? "A produção de colágeno cai cerca de 1% por ano depois dos 30"
+        : "Polivitamínico masculino de manutenção",
+      p.sexo === "feminino"
+        ? "Depois dos 30 a produção de colágeno diminui gradualmente. Os peptídeos Verisol fornecem aminoácidos usados pela pele, com resultado variável entre pessoas."
+        : "Fórmula com zinco e complexo B, ajustada às necessidades masculinas, para energia e imunidade na rotina intensa.",
+      "idade",
+    );
+  },
+  "45–59 anos": (_p, add) => {
+    add(
+      produtos.calcivitam,
+      2,
+      "45 a 59 anos: perda óssea natural se acelera",
+      "Nessa fase a perda de massa óssea acelera, especialmente nas mulheres após a menopausa. Cálcio com vitaminas D e K é a combinação que o osso realmente aproveita.",
+      "idade",
+    );
+    add(
+      produtos.verisol,
+      2,
+      "Perda de colágeno e de massa magra acelera após os 45",
+      "A partir dos 45 a pele perde firmeza e o corpo perde massa magra mais rápido. Os peptídeos Verisol com vitaminas dão suporte estrutural a pele e tecidos de sustentação.",
+      "idade",
+    );
+    add(
+      produtos.magplusSupra,
+      2,
+      "A absorção de magnésio cai com a idade",
+      "Com menos magnésio disponível aparecem cãibras, sono picado e tensão muscular. A forma dimalato é bem absorvida e bem tolerada pelo intestino.",
+      "idade",
+    );
+    add(
+      produtos.coq10,
+      3,
+      "A produção natural de coenzima Q10 diminui após os 45",
+      "A Q10 é peça da produção de energia dentro das células e protege o coração. A queda natural é maior ainda em quem usa medicação para colesterol.",
+      "idade",
+    );
+  },
+  "60+ anos": (_p, add) => {
+    add(
+      produtos.calcivitam,
+      1,
+      "60+: prioridade em osso, cálcio e vitamina D",
+      "Depois dos 60, osso frágil é o principal risco de uma queda virar fratura. Cálcio com vitaminas D e K é a base da prevenção, junto de treino de força.",
+      "idade",
+    );
+    add(
+      produtos.b12,
+      1,
+      "Depois dos 60 a absorção de B12 cai bastante",
+      "O estômago produz menos ácido com a idade, e sem ele a B12 do alimento não é absorvida. A falta aparece como cansaço, esquecimento e formigamento — vale dosar no sangue.",
+      "idade",
+    );
+    add(
+      produtos.flexigold,
+      2,
+      "Desgaste articular é comum a partir dos 60",
+      "Anos de carga desgastam a cartilagem, que é feita de colágeno tipo 2. Repor esse tipo específico dá suporte à mobilidade do dia a dia.",
+      "idade",
+    );
+    add(
+      produtos.coq10,
+      2,
+      "Energia celular e saúde do coração após os 60",
+      "A produção própria de Q10 já está bem reduzida nessa idade. Repor apoia a energia das células e a proteção antioxidante do coração.",
+      "idade",
+    );
+    add(
+      produtos.magplus,
+      2,
+      "Magnésio para cãibras, sono e força muscular",
+      "Cãibras noturnas e sono picado são queixas muito comuns após os 60 e frequentemente ligadas à falta de magnésio, que também participa da contração muscular.",
+      "idade",
+    );
+    add(
+      produtos.seniorSupra,
+      3,
+      "Polivitamínico de manutenção voltado à fase 60+",
+      "A fórmula sênior é uma opção mais adequada à faixa de idade do que um polivitamínico adulto genérico. Ainda assim, não substitui alimentação nem exames.",
+      "idade",
+    );
+    add(
+      produtos.psylax,
+      3,
+      "O intestino fica mais lento com a idade",
+      "Menos movimento e menos líquido deixam o intestino preso. A fibra do psyllium, tomada com bastante água, devolve regularidade sem irritar o intestino.",
+      "idade",
+    );
+  },
+};
+
 export function recomendar(p: Perfil): Resultado {
   if (p.idade !== null && p.idade < 18) {
     return {
@@ -846,136 +1003,13 @@ export function recomendar(p: Perfil): Resultado {
   }
 
   // ---- Recomendações por idade ----
+  // Strategy: a função de recomendação da faixa é escolhida em tempo de
+  // execução a partir do rótulo retornado por faixaDeIdade(idade).
   const idade = p.idade;
   if (idade !== null) {
-    if (idade < 30) {
-      add(
-        produtos.creatina,
-        2,
-        "18 a 29 anos: melhor fase para construir força e músculo",
-        "Nesta faixa a resposta ao treino é a maior da vida, e o músculo construído agora é o que protege articulações e metabolismo nas décadas seguintes. A creatina é o suplemento com mais estudos para acelerar esse ganho.",
-        "idade",
-      );
-      add(
-        produtos.hidrasais,
-        3,
-        "Rotina ativa pede reposição de eletrólitos",
-        "Treino, calor e rotina corrida fazem perder sais junto do suor. Repor eletrólitos mantém a água dentro das células e sustenta o rendimento.",
-        "idade",
-      );
-      add(
-        p.sexo === "masculino" ? produtos.supraHomem : produtos.supraMulher,
-        3,
-        "Polivitamínico de manutenção para 18 a 29 anos",
-        "Alimentação irregular nessa fase deixa pequenas faltas de várias vitaminas ao mesmo tempo, o que aparece como cansaço. O polivitamínico da fórmula certa para o seu sexo cobre essas lacunas.",
-        "idade",
-      );
-    } else if (idade < 45) {
-      add(
-        produtos.b12,
-        2,
-        "30 a 44 anos: energia e metabolismo em rotina intensa",
-        "É a faixa de maior carga de trabalho e menor tempo para comer bem. A B12 na forma ativa sustenta a produção das células que levam oxigênio, ponto central do cansaço dessa fase.",
-        "idade",
-      );
-      add(
-        produtos.magplusSupra,
-        3,
-        "A partir dos 30 o magnésio faz diferença no sono e no estresse",
-        "O magnésio participa do relaxamento muscular e da regulação do sistema nervoso. Repor ajuda em sono leve, tensão e cãibras — queixas típicas dessa faixa.",
-        "idade",
-      );
-      add(
-        p.sexo === "feminino" ? produtos.colagenoHidro : produtos.supraHomem,
-        3,
-        p.sexo === "feminino"
-          ? "A produção de colágeno cai cerca de 1% por ano depois dos 30"
-          : "Polivitamínico masculino de manutenção",
-        p.sexo === "feminino"
-          ? "Depois dos 30 a produção de colágeno diminui gradualmente. Os peptídeos Verisol fornecem aminoácidos usados pela pele, com resultado variável entre pessoas."
-          : "Fórmula com zinco e complexo B, ajustada às necessidades masculinas, para energia e imunidade na rotina intensa.",
-        "idade",
-      );
-    } else if (idade < 60) {
-      add(
-        produtos.calcivitam,
-        2,
-        "45 a 59 anos: perda óssea natural se acelera",
-        "Nessa fase a perda de massa óssea acelera, especialmente nas mulheres após a menopausa. Cálcio com vitaminas D e K é a combinação que o osso realmente aproveita.",
-        "idade",
-      );
-      add(
-        produtos.verisol,
-        2,
-        "Perda de colágeno e de massa magra acelera após os 45",
-        "A partir dos 45 a pele perde firmeza e o corpo perde massa magra mais rápido. Os peptídeos Verisol com vitaminas dão suporte estrutural a pele e tecidos de sustentação.",
-        "idade",
-      );
-      add(
-        produtos.magplusSupra,
-        2,
-        "A absorção de magnésio cai com a idade",
-        "Com menos magnésio disponível aparecem cãibras, sono picado e tensão muscular. A forma dimalato é bem absorvida e bem tolerada pelo intestino.",
-        "idade",
-      );
-      add(
-        produtos.coq10,
-        3,
-        "A produção natural de coenzima Q10 diminui após os 45",
-        "A Q10 é peça da produção de energia dentro das células e protege o coração. A queda natural é maior ainda em quem usa medicação para colesterol.",
-        "idade",
-      );
-    } else {
-      add(
-        produtos.calcivitam,
-        1,
-        "60+: prioridade em osso, cálcio e vitamina D",
-        "Depois dos 60, osso frágil é o principal risco de uma queda virar fratura. Cálcio com vitaminas D e K é a base da prevenção, junto de treino de força.",
-        "idade",
-      );
-      add(
-        produtos.b12,
-        1,
-        "Depois dos 60 a absorção de B12 cai bastante",
-        "O estômago produz menos ácido com a idade, e sem ele a B12 do alimento não é absorvida. A falta aparece como cansaço, esquecimento e formigamento — vale dosar no sangue.",
-        "idade",
-      );
-      add(
-        produtos.flexigold,
-        2,
-        "Desgaste articular é comum a partir dos 60",
-        "Anos de carga desgastam a cartilagem, que é feita de colágeno tipo 2. Repor esse tipo específico dá suporte à mobilidade do dia a dia.",
-        "idade",
-      );
-      add(
-        produtos.coq10,
-        2,
-        "Energia celular e saúde do coração após os 60",
-        "A produção própria de Q10 já está bem reduzida nessa idade. Repor apoia a energia das células e a proteção antioxidante do coração.",
-        "idade",
-      );
-      add(
-        produtos.magplus,
-        2,
-        "Magnésio para cãibras, sono e força muscular",
-        "Cãibras noturnas e sono picado são queixas muito comuns após os 60 e frequentemente ligadas à falta de magnésio, que também participa da contração muscular.",
-        "idade",
-      );
-      add(
-        produtos.seniorSupra,
-        3,
-        "Polivitamínico de manutenção voltado à fase 60+",
-        "A fórmula sênior é uma opção mais adequada à faixa de idade do que um polivitamínico adulto genérico. Ainda assim, não substitui alimentação nem exames.",
-        "idade",
-      );
-      add(
-        produtos.psylax,
-        3,
-        "O intestino fica mais lento com a idade",
-        "Menos movimento e menos líquido deixam o intestino preso. A fibra do psyllium, tomada com bastante água, devolve regularidade sem irritar o intestino.",
-        "idade",
-      );
-    }
+    const faixa = faixaDeIdade(idade);
+    const estrategia = faixa ? estrategiasPorFaixaEtaria[faixa] : undefined;
+    estrategia?.(p, add);
 
     if (p.sexo === "feminino" && idade >= 50) {
       add(

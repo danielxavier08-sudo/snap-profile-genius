@@ -1,6 +1,7 @@
 import { createServerFn } from "@tanstack/react-start";
 import { requireSupabaseAuth } from "@/integrations/supabase/auth-middleware";
 import { camposNumericos, perfilVazio, type Perfil } from "@/lib/bioimpedancia";
+import { MedicoesRepository } from "@/lib/repositories/medicoesRepository";
 
 type LeituraInput = { imagemBase64: string; mimeType: string };
 
@@ -84,29 +85,16 @@ export type PerfilSalvo = {
 export const obterPerfil = createServerFn({ method: "GET" })
   .middleware([requireSupabaseAuth])
   .handler(async ({ context }) => {
-    const { data, error } = await context.supabase
-      .from("perfis")
-      .select("nome, idade, sexo, altura, cadencia")
-      .eq("id", context.userId)
-      .maybeSingle();
-    if (error) throw new Error(error.message);
-    return (data ?? null) as PerfilSalvo | null;
+    const repositorio = new MedicoesRepository(context.supabase);
+    return repositorio.buscarPerfil(context.userId);
   });
 
 export const salvarPerfil = createServerFn({ method: "POST" })
   .middleware([requireSupabaseAuth])
   .inputValidator((data: Partial<PerfilSalvo>) => data)
   .handler(async ({ data, context }) => {
-    const { error } = await context.supabase.from("perfis").upsert({
-      id: context.userId,
-      nome: data.nome ?? null,
-      idade: data.idade ?? null,
-      sexo: data.sexo ?? "feminino",
-      altura: data.altura ?? null,
-      cadencia: data.cadencia ?? "mensal",
-      updated_at: new Date().toISOString(),
-    });
-    if (error) throw new Error(error.message);
+    const repositorio = new MedicoesRepository(context.supabase);
+    await repositorio.salvarPerfil(context.userId, data);
     return { ok: true };
   });
 
@@ -121,14 +109,8 @@ export type MedicaoSalva = {
 export const listarMedicoes = createServerFn({ method: "GET" })
   .middleware([requireSupabaseAuth])
   .handler(async ({ context }) => {
-    const { data, error } = await context.supabase
-      .from("medicoes")
-      .select("id, medido_em, dados, recomendacoes, observacoes")
-      .eq("user_id", context.userId)
-      .order("medido_em", { ascending: false })
-      .limit(60);
-    if (error) throw new Error(error.message);
-    return (data ?? []) as unknown as MedicaoSalva[];
+    const repositorio = new MedicoesRepository(context.supabase);
+    return repositorio.listarMedicoes(context.userId);
   });
 
 export const salvarMedicao = createServerFn({ method: "POST" })
@@ -144,21 +126,14 @@ export const salvarMedicao = createServerFn({ method: "POST" })
     },
   )
   .handler(async ({ data, context }) => {
+    const repositorio = new MedicoesRepository(context.supabase);
     const dados: Perfil = { ...perfilVazio, ...data.dados };
-    const { error } = await context.supabase.from("medicoes").insert({
-      user_id: context.userId,
-      dados: JSON.parse(JSON.stringify(dados)),
-      recomendacoes: JSON.parse(JSON.stringify(data.recomendacoes)),
-      observacoes: data.observacoes ?? null,
-    });
-    if (error) throw new Error(error.message);
 
-    await context.supabase.from("perfis").upsert({
-      id: context.userId,
+    await repositorio.inserirMedicao(context.userId, dados, data.recomendacoes, data.observacoes ?? null);
+    await repositorio.salvarPerfil(context.userId, {
       idade: dados.idade,
       sexo: dados.sexo,
       altura: dados.altura,
-      updated_at: new Date().toISOString(),
     });
 
     return { ok: true };
@@ -168,11 +143,7 @@ export const excluirMedicao = createServerFn({ method: "POST" })
   .middleware([requireSupabaseAuth])
   .inputValidator((data: { id: string }) => data)
   .handler(async ({ data, context }) => {
-    const { error } = await context.supabase
-      .from("medicoes")
-      .delete()
-      .eq("id", data.id)
-      .eq("user_id", context.userId);
-    if (error) throw new Error(error.message);
+    const repositorio = new MedicoesRepository(context.supabase);
+    await repositorio.excluirMedicao(context.userId, data.id);
     return { ok: true };
   });
